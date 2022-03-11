@@ -91,59 +91,63 @@ const Player = ({
   };
 
   return (
-    <div className="player">
-      <div className="time-control">
+    <div className='player'>
+      <div className='time-control'>
         <p>{getTime(songInfo.currentTime)}</p>
         <div
           style={{
             background: `linear-gradient(to right, ${currentSong.color[0]},${currentSong.color[1]})`,
           }}
-          className="track"
+          className='track'
         >
           <input
             value={songInfo.currentTime}
-            type="range"
+            type='range'
             max={songInfo.duration || 0}
             min={0}
             onChange={dragHandler}
           />
-          <div style={trackAnim} className="animate-track"></div>
+          <div style={trackAnim} className='animate-track'></div>
         </div>
         <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
       </div>
-      <div className="play-control">
-        <FontAwesomeIcon
-          onClick={() => skipTrackHandler("skip-back")}
-          className="skip-back"
-          size="2x"
-          icon={faAngleLeft}
-        />
-        <FontAwesomeIcon
-          onClick={playSongHandler}
-          className="play"
-          size="2x"
-          icon={isPlaying ? faPause : faPlay}
-        />
-        <FontAwesomeIcon
-          className="skip-forward"
-          size="2x"
-          icon={faAngleRight}
-          onClick={() => skipTrackHandler("skip-forward")}
-        />
-        <FontAwesomeIcon
-          onClick={() => setActiveVolume(!activeVolume)}
-          icon={faVolumeDown}
-        />
-        {activeVolume && (
-          <input
-            onChange={changeVolume}
-            value={songInfo.volume}
-            max="1"
-            min="0"
-            step="0.01"
-            type="range"
+      <div className='play-control'>
+        <div className='songs-control'>
+          <FontAwesomeIcon
+            onClick={() => skipTrackHandler("skip-back")}
+            className='skip-back'
+            size='2x'
+            icon={faAngleLeft}
           />
-        )}
+          <FontAwesomeIcon
+            onClick={playSongHandler}
+            className='play'
+            size='2x'
+            icon={isPlaying ? faPause : faPlay}
+          />
+          <FontAwesomeIcon
+            className='skip-forward'
+            size='2x'
+            icon={faAngleRight}
+            onClick={() => skipTrackHandler("skip-forward")}
+          />
+        </div>
+        <div className='volumn-control'>
+          <FontAwesomeIcon
+            onClick={() => setActiveVolume(!activeVolume)}
+            icon={faVolumeDown}
+          />
+          {activeVolume && (
+            <input
+              onChange={changeVolume}
+              value={songInfo.volume}
+              max='1'
+              min='0'
+              step='0.01'
+              type='range'
+            />
+          )}
+        </div>
       </div>
     </div>
   );
